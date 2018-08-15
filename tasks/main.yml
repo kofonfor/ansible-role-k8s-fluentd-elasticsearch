@@ -5,4 +5,4 @@
   template: src=values.yml dest=/tmp/fluentd-elasticsearch-{{ fluentd_elasticsearch_helm_release }}.yml
 
 - name: upgrade {{ fluentd_elasticsearch_helm_release }} release using a Helm chart
-  shell: export KUBECONFIG=/etc/kubernetes/admin.conf && helm upgrade {{ fluentd_elasticsearch_helm_release }} incubator/fluentd-elasticsearch --install --recreate-pods --namespace {{ k8s_namespace }} -f /tmp/fluentd-elasticsearch-{{ fluentd_elasticsearch_helm_release }}.yml
+  shell: export KUBECONFIG=/etc/kubernetes/admin.conf && helm upgrade {{ fluentd_elasticsearch_helm_release }} incubator/fluentd-elasticsearch --install --namespace {{ k8s_namespace }} -f /tmp/fluentd-elasticsearch-{{ fluentd_elasticsearch_helm_release }}.yml
