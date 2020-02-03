@@ -1,8 +1,8 @@
-- name: enable the incubator repo
-  shell: export KUBECONFIG=/etc/kubernetes/admin.conf && helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+- name: enable the kiwigrid repo
+  shell: helm repo add kiwigrid https://kiwigrid.github.io
 
 - name: put values
   template: src=values.yml dest=/tmp/fluentd-elasticsearch-{{ fluentd_elasticsearch_helm_release }}.yml
 
 - name: upgrade {{ fluentd_elasticsearch_helm_release }} release using a Helm chart
-  shell: export KUBECONFIG=/etc/kubernetes/admin.conf && helm upgrade {{ fluentd_elasticsearch_helm_release }} incubator/fluentd-elasticsearch --install --namespace {{ k8s_namespace }} -f /tmp/fluentd-elasticsearch-{{ fluentd_elasticsearch_helm_release }}.yml
+  shell: helm upgrade {{ fluentd_elasticsearch_helm_release }} kiwigrid/fluentd-elasticsearch --install --namespace {{ k8s_namespace }} -f /tmp/fluentd-elasticsearch-{{ fluentd_elasticsearch_helm_release }}.yml
