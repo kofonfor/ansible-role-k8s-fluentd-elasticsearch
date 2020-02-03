@@ -1,2 +1,2 @@
 elasticsearch:
-  host: '{{ elasticsearch_helm_release }}-elasticsearch-client'
+  host: 'elasticsearch-master'
